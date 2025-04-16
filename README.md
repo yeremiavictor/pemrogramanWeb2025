@@ -166,3 +166,28 @@ class ProdukController extends Controller
 
 }
 ```
+
+3. Agar produk dapat diakses, maka diperlukan setting di routes (buka routes/web.php)
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+//import ProdukController
+use App\Http\Controllers\ProdukController;
+
+//memberikan akses web ke ProdukController
+Route::resource('/produk',ProdukController::class);
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+```
+
+kemudian anda bisa cek dengan terminal terkait routes yang di buat:
+
+```bash
+php artisan route:list
+```
