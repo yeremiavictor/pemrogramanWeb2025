@@ -15,8 +15,28 @@
 ```
 
 2. buka folder proyek dengan VSCODE
-3. tes proyek dengan menggunakan
+3. arahkan terminal / cmd ke folder root proyek kemudian tes proyek dengan menggunakan
 
 ```bash
     php artisan serve
+```
+
+# Konfigurasi Laravel
+
+1. Buka .env ubah pada bagian
+
+```env
+    FILESYSTEM_DISK=local
+```
+
+    menjadi:
+
+```env
+    FILESYSTEM_DISK=public
+```
+
+2. Jalankan perintah berikut untuk membuat public link ke storage
+
+```bash
+    php artisan storage:link
 ```
