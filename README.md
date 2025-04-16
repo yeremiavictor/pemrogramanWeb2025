@@ -75,4 +75,94 @@ catatan: sesuaikan username dan password sesuai dengan setting Database Anda.
 php artisan make:model Produk -m
 ```
 
-2.
+2. Buka folder database/migrations/
+3. Buka file yang baru di create
+4. pada bagian up silahkan tambahkan kebutuhan data field data anda
+   contoh:
+
+```php
+    public function up(): void
+    {
+        Schema::create('produks', function (Blueprint $table) {
+            $table->id();
+            //disini
+            $table->string('foto');
+            $table->string('nama');
+            $table->text('deskripsi');
+            $table->bigInteger('harga');
+            $table->integer('stok')->default(0);
+            //akhir
+            $table->timestamps();
+        });
+    }
+```
+
+Agar dapat dimanipulasi maka diperlukan izin fillable pada model
+
+6. masuk folder app/Models/Produk.php
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+//import hasfactory
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Produk extends Model
+{
+    //panggil has factory
+    use HasFactory;
+
+    //berikan akses
+    protected $fillable =[
+        'foto','nama','deskripsi','harga','stok'
+    ];
+}
+
+```
+
+7. Lakukan migrasi model dengan:
+
+```bash
+php artisan migrate
+```
+
+8. cek apakah table sudah di generate di database, melalui phpmyadmin
+
+## Membuat Read
+
+1. Membuat controller untuk mengelola produk
+
+```bash
+    php artisan make:controller ProdukController
+```
+
+2. Buka app/Http/Controllers/ProdukController.php
+   update produk sebagai berikut
+
+```php
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+//import model
+use App\Models\Produk;
+
+//use view
+use Illuminate\View\View;
+
+class ProdukController extends Controller
+{
+    //untuk view
+    public function index(): View {
+        //mengambil seluruh produk
+        $produks = Produk::latest()->paginate(10);
+
+        //render view dengan produks
+        return view('produks.index', compact('produks'));
+    }
+
+}
+```
