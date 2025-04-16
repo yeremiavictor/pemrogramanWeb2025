@@ -192,7 +192,7 @@ kemudian anda bisa cek dengan terminal terkait routes yang di buat:
 php artisan route:list
 ```
 
-4. tambahkan folder "produk" dalam resource/views/
+4. tambahkan folder "produks" dalam resource/views/
 5. buat file baru dengan nama "index.blade.php"
 6. Masukan rumus html dengan contoh sebagai berikut:
 
@@ -213,11 +213,10 @@ php artisan route:list
             <div class="col-md-12">
                 <div>
                     <h3 class="text-center my-4">Data Produk</h3>
-                    <hr>
                 </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <a href="{{ route('produks.create') }}" class="btn btn-md btn-success mb-3">Tambah</a>
+                        <a href="{{ route('produk.create') }}" class="btn btn-md btn-success mb-3">Tambah</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -238,9 +237,9 @@ php artisan route:list
                                         <td>{{ "Rp " . number_format($produk->harga,2,',','.') }}</td>
                                         <td>{{ $produk->stok }}</td>
                                         <td class="text-center">
-                                            <form onsubmit="return confirm('Anda yakin ?');" action="{{ route('produks.destroy', $produk->id) }}" method="POST">
-                                                <a href="{{ route('produks.show', $produk->id) }}" class="btn btn-sm btn-dark">Lihat</a>
-                                                <a href="{{ route('produks.edit', $produk->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                            <form onsubmit="return confirm('Anda yakin ?');" action="{{ route('produk.destroy', $produk->id) }}" method="POST">
+                                                <a href="{{ route('produk.show', $produk->id) }}" class="btn btn-sm btn-dark">Lihat</a>
+                                                <a href="{{ route('produk.edit', $produk->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
@@ -249,7 +248,7 @@ php artisan route:list
                                     </tr>
                                 @empty
                                     <div class="alert alert-danger">
-                                        Data Produk tidak tersedia
+                                        Data Produk kosong
                                     </div>
                                 @endforelse
                             </tbody>
