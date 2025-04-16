@@ -40,3 +40,29 @@
 ```bash
     php artisan storage:link
 ```
+
+# Konfigurasi Database
+
+Buka .env ubah pada bagian
+
+```env
+    DB_CONNECTION=sqlite
+    # DB_HOST=127.0.0.1
+    # DB_PORT=3306
+    # DB_DATABASE=laravel
+    # DB_USERNAME=root
+    # DB_PASSWORD=
+```
+
+menjadi
+
+```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=nama_database_anda
+    DB_USERNAME=root
+    DB_PASSWORD=
+```
+
+catatan: sesuaikan username dan password sesuai dengan setting Database Anda.
