@@ -66,3 +66,13 @@ menjadi
 ```
 
 catatan: sesuaikan username dan password sesuai dengan setting Database Anda.
+
+## Buat Model dan Migrasi
+
+1. Buka Terminal:
+
+```bash
+php artisan make:model Produk -m
+```
+
+2.
