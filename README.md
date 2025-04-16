@@ -6,7 +6,7 @@
 4. Extension: Untuk helper PHP
 5. Memiliki skill setidaknya html, css, dan php
 
-# Instalasi Laravel
+## Instalasi Laravel
 
 1. Buka terminal:
 
@@ -21,7 +21,7 @@
     php artisan serve
 ```
 
-# Konfigurasi Laravel
+## Konfigurasi Laravel
 
 1. Buka .env ubah pada bagian
 
@@ -29,7 +29,7 @@
     FILESYSTEM_DISK=local
 ```
 
-    menjadi:
+menjadi:
 
 ```env
     FILESYSTEM_DISK=public
@@ -41,7 +41,7 @@
     php artisan storage:link
 ```
 
-# Konfigurasi Database
+## Konfigurasi Database
 
 Buka .env ubah pada bagian
 
