@@ -58,5 +58,12 @@ class ProdukController extends Controller
         return redirect()->route('produk.index')->with(['success'=>'data tersimpan']);
     }
 
+    public function show(string $id): View{
+        //dapatkan produk berdasarkan id
+        $produk = Produk::findOrFail($id);
+
+        //render view
+        return view('produks.show', compact('produk'));
+    }
 
 }
