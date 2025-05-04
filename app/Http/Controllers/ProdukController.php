@@ -125,4 +125,18 @@ class ProdukController extends Controller
 
     }
 
+    public function destroy($id): RedirectResponse{
+        //cari produk berdasarkan id
+        $produk = Produk::findOrFail($id);
+
+        //hapus foto
+        Storage::delete('produk/'.$produk->foto);
+
+
+        //hapus produk
+        $produk->delete();
+        // Kembalikan ke index
+        return redirect()->route('produk.index')->with(['success'=>'data sudah dihapus']);
+    }
+
 }

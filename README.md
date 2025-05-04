@@ -518,7 +518,7 @@ use Illuminate\Http\RedirectResponse;
 
 ## Membuat Detail View
 
-1. Langkah selanjutnya adalah membuat detail view (view khusus dengan id tertentu)
+1. Langkah selanjutnya adalah membuat fitur edit
 2. Masih dalam controller yang sama tambahkan function berikut setelah akhir kurawal dari
 
 ```php
@@ -607,7 +607,7 @@ use Illuminate\Support\Facades\Storage;
     }
 ```
 
-3. Tambahkan function edit sebagai berikut setelah kurawal:
+4. Tambahkan function edit sebagai berikut setelah kurawal:
 
 ```php
     public function edit(string $id):View{
@@ -667,7 +667,7 @@ use Illuminate\Support\Facades\Storage;
     }
 ```
 
-4. Kemudian pada folder resources > views > produk buat file html baru dengan nama edit.blade.php dengan syntax html berikut
+5. Kemudian pada folder resources > views > produk buat file html baru dengan nama edit.blade.php dengan syntax html berikut
 
 ```html
 <!DOCTYPE html>
@@ -827,4 +827,35 @@ use Illuminate\Support\Facades\Storage;
         </script>
     </body>
 </html>
+```
+
+### Hapus Data
+
+1. Langkah selanjutnya adalah fungsi delete
+2. Cari akhir kurawal dari show produk detail
+
+```php
+ //Redirect ke index, setelah isi form
+        return redirect()->route('produk.index')->with(['success'=>'data diperbarui']);
+
+    }
+
+```
+
+3. Tambahkan function destroy / delete sebagai berikut setelah kurawal:
+
+```php
+public function destroy($id): RedirectResponse{
+        //cari produk berdasarkan id
+        $produk = Produk::findOrFail($id);
+
+        //hapus foto
+        Storage::delete('produk/'.$produk->foto);
+
+
+        //hapus produk
+        $produk->delete();
+        // Kembalikan ke index
+        return redirect()->route('produk.index')->with(['success'=>'data sudah dihapus']);
+    }
 ```
